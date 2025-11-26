@@ -5,5 +5,6 @@ export const BASE_URL = "https://reach.tejaspharma.in"
 export const BLOGGER_URL = [
     "https://tejaspharma.blogspot.com/feeds/posts/default?alt=json&max-results=500",
     "https://tejaspharma1.blogspot.com/feeds/posts/default?alt=json&max-results=500",
-    "https://support-tejaspharma.blogspot.com/feeds/posts/default?alt=json&max-results=500"
+    "https://support-tejaspharma.blogspot.com/feeds/posts/default?alt=json&max-results=500",
+    "https://helloblog5252.blogspot.com/feeds/posts/default?alt=json&max-results=500"
 ]
