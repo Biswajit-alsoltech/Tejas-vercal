@@ -1,0 +1,24 @@
+.CertifiedSec{
+    /* background-color: rgba(16, 144, 203, 0.1); */
+   
+    padding-left: 3%;
+    padding-right: 3%;
+    /* padding-top: 2%; */
+    /* padding-bottom: 3%; */
+    margin-top: 1%;
+    /* display: flex; */
+    /* margin-top: 6%; */
+  }
+  .CertifiedText{
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    /* align-items: center; */
+    margin-bottom: 1%;
+  }
+  .SertificateImgSec{
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    gap: 18%; /* Optional: add some space between the images */
+  }

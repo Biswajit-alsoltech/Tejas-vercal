@@ -1,0 +1,284 @@
+/* Hide system cursor */
+/* Hide default cursor globally */
+body, a, button {
+  cursor: none !important;
+}
+
+input,
+textarea,
+select,
+button[type="submit"],
+input[type="submit"],
+input[type="file"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+  cursor: auto !important;
+}
+
+/* Extra safety: allow normal cursor anywhere inside a form */
+form * {
+  cursor: auto !important;
+}
+
+/* System cursor override */
+.cursor-blocker {
+  cursor: auto !important;
+}
+
+/* Also hide the animated cursor */
+.cursor-blocker-hovering #cursor {
+  display: none !important;
+}
+
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: 
+    transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    width 0.2s ease,
+    height 0.2s ease;
+  filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Main capsule cursor */
+.cursor-capsule {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ff6b6b 0%, #ff6b6b 50%, #ffffff 50%, #ffffff 100%);
+  border-radius: 20px;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.15),
+    inset 0 2px 4px rgba(255,255,255,0.6),
+    inset 0 -2px 2px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: 
+    transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    background 0.5s ease,
+    box-shadow 0.3s ease,
+    border-radius 0.2s ease;
+  transform-origin: center center;
+}
+
+/* Trail pills - identical styling but smaller */
+.trail-capsule {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  background: linear-gradient(180deg, #ff6b6b 0%, #ff6b6b 50%, #ffffff 50%, #ffffff 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px); /* ✨ slight frosted effect */
+  animation: trailFade 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+}
+
+
+/* Size variations for trail pills */
+.trail-capsule-small {
+  width: 8px;
+  height: 16px;
+}
+
+.trail-capsule-medium {
+  width: 6px;
+  height: 12px;
+}
+
+.trail-capsule-tiny {
+  width: 4px;
+  height: 8px;
+}
+
+/* Clicking animation */
+.cursor.clicking {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.cursor.clicking .cursor-capsule {
+  border-radius: 12px;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.2),
+    inset 0 1px 2px rgba(255,255,255,0.8),
+    0 0 15px var(--glow-color, rgba(255,107,107,0.8)),
+    0 0 25px var(--glow-color, rgba(255,107,107,0.4));
+}
+
+/* Hovering over clickable elements */
+.cursor.hovered {
+  transform: translate(-50%, -50%) scale(1.8);
+  width: 14px;
+  height: 28px;
+}
+
+.cursor.hovered .cursor-capsule {
+  box-shadow:
+    0 4px 10px rgba(0,0,0,0.2),
+    inset 0 2px 4px rgba(255,255,255,0.8),
+    0 0 12px var(--glow-color, rgba(255,107,107,0.6)),
+    0 0 20px var(--glow-color, rgba(255,107,107,0.3));
+  transition: 
+    box-shadow 0.15s ease,
+    transform 0.15s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+/* Sparkle effect */
+.trail-sparkle {
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0.9) 70%, transparent 100%);
+  border-radius: 50%;
+  animation: sparkleFade 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+}
+
+/* Animations */
+@keyframes trailFade {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(var(--trail-rotation, 0deg)); }
+  20% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.1) rotate(var(--trail-rotation, 0deg)); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.3) rotate(var(--trail-rotation, 0deg)); }
+}
+
+@keyframes sparkleFade {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
+
+/* Pulse effect for hover state */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.cursor.hovered .cursor-capsule {
+  animation: pulse 1.5s infinite ease-in-out;
+} 
+
+
+
+
+/* touch css */
+.tap-ripple {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  background: rgba(200, 200, 200, 0.25); /* ✨ Soft grey ripple */
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: rippleEffect 0.45s ease-out forwards;
+  pointer-events: none;
+  z-index: 9999;
+  backdrop-filter: blur(1px); /* optional softness */
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+}
+
+
+.trail-pill {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  animation: trailFade 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Capsule Sizes */
+.trail-capsule-small {
+  width: 8px;
+  height: 16px;
+  border-radius: 20px;
+}
+.trail-capsule-medium {
+  width: 6px;
+  height: 12px;
+  border-radius: 20px;
+}
+.trail-capsule-tiny {
+  width: 4px;
+  height: 8px;
+  border-radius: 20px;
+}
+
+/* Tablet (circle) */
+.trail-tablet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85); /* White, semi-translucent */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(1px);
+  animation: tabletPop 0.8s ease-out;
+}
+
+/* Capsule animation (same) */
+@keyframes trailFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6) rotate(var(--trail-rotation, 0deg));
+  }
+  20% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.1) rotate(var(--trail-rotation, 0deg));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3) rotate(var(--trail-rotation, 0deg));
+  }
+}
+
+/* Tablet animation (no rotate) */
+@keyframes tabletPop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  20% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+}
+
+.trail-tablet-glow {
+  background: radial-gradient(circle, #ffffff 40%, #eaeaea 100%);
+  box-shadow:
+    0 0 6px rgba(255, 255, 255, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+#form-filed-1,
+#form-filed-2 {
+  cursor: auto !important;
+}

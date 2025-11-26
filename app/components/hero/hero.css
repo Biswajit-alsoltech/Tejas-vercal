@@ -1,0 +1,20 @@
+.hero{
+  background-image: url("../../assets/images/hero.jpeg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.careers-hero{
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url("../../assets/images/careers.jpeg") lightgray 50% / cover no-repeat;
+}
+
+@media screen and (max-width: 768px){
+  .hero{
+    background-size: cover;
+    background-position: 20%;
+  }
+}
