@@ -1,18 +1,21 @@
 import { BLOGGER_URL } from "@/utils/constant";
 import { NextResponse } from "next/server";
 
+// 1. ADD THIS LINE to force the route to run on every request
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const results = await Promise.allSettled(
       BLOGGER_URL.map((url) => 
-        // Add { cache: 'no-store' } to ensure we get fresh data every time
+        // 2. Keep this, but 'force-dynamic' above is the real fix
         fetch(url, { cache: 'no-store' }).then((res) => res.json())
       )
     );
 
     const blogs = results
       .filter((r) => r.status === "fulfilled")
-      // @ts-ignore - Typescript doesn't know the structure of the promise value yet
+      // @ts-ignore 
       .map((r) => r.value);
 
     return NextResponse.json({ blogs });

@@ -96,7 +96,7 @@ const BlogPage: React.FC = () => {
   setStatus("loading");
   try {
     // Call your Next.js API route instead of Blogger directly
-    const response = await axios.get("/api/blogs");
+    const response = await axios.get(`/api/blogs?t=${new Date().getTime()}`)
 
     // API returns { blogs: [...] }
     const allEntries: BloggerEntry[] = response.data.blogs.flatMap(
